@@ -1,0 +1,86 @@
+import java.util.*; 
+import java.io.*; 
+public class Collection { 
+ public static void main(String args[]) throws IOException { 
+ Set ts = new TreeSet(); 
+ ts.add("Red"); 
+ ts.add("Blue"); 
+ ts.add("Yellow"); 
+ ts.add("Pink"); 
+ ts.add("Baby Pink"); 
+ System.out.println("TreeSet in ascending order: " + ts); 
+ } 
+} 
+
+
+
+
+
+
+
+import java.sql.*; 
+4.
+5. public class jdbc { 
+6. public static void main(String[] args) { 
+7. try { 
+8. // Establish a connection to the database
+9. Connection conn = 
+DriverManager.getConnection("jdbc:postgresql://localhost:5434/postgres", 
+"postgres", "saqlain"); 
+10. 
+11. // Prepare a statement to insert data into the Teacher table
+12. PreparedStatement insertStmt = conn.prepareStatement("INSERT 
+INTO Teacher (Tno, Tname, Subject) VALUES (?, ?, ?)"); 
+13. 
+14. // Insert at least 5 records into the Teacher table
+15. insertStmt.setInt(1, 1); 
+16. insertStmt.setString(2, "John Doe"); 
+17. insertStmt.setString(3, "JAVA"); 
+18. insertStmt.executeUpdate(); 
+19. 
+20. insertStmt.setInt(1, 2); 
+21. insertStmt.setString(2, "Jane Smith"); 
+22. insertStmt.setString(3, "Python"); 
+23. insertStmt.executeUpdate(); 
+24. 
+25. insertStmt.setInt(1, 3); 
+26. insertStmt.setString(2, "Mike Johnson"); 
+27. insertStmt.setString(3, "C++"); 
+28. insertStmt.executeUpdate(); 
+29. 
+30. insertStmt.setInt(1, 4); 
+31. insertStmt.setString(2, "Sarah Lee"); 
+32. insertStmt.setString(3, "JAVA"); 
+33. insertStmt.executeUpdate(); 
+34. 
+35. insertStmt.setInt(1, 5); 
+36. insertStmt.setString(2, "David Chen"); 
+37. insertStmt.setString(3, "PHP"); 
+38. insertStmt.executeUpdate(); 
+39. 
+40. // Prepare a statement to retrieve data from the Teacher table
+41. PreparedStatement selectStmt = conn.prepareStatement("SELECT * 
+FROM Teacher WHERE Subject = ?"); 
+42. 
+43. // Retrieve the details of the teacher who is teaching "JAVA" 
+Subject
+44. selectStmt.setString(1, "JAVA"); 
+45. ResultSet rs = selectStmt.executeQuery(); 
+46. while (rs.next()) { 
+47. int tno = rs.getInt("Tno"); 
+48. String tname = rs.getString("Tname"); 
+49. String subject = rs.getString("Subject"); 
+50. System.out.println("Teacher number: " + tno + ", Teacher 
+name: " + tname + ", Subject: " + subject); 
+51. } 
+52. 
+53. // Close the resources
+54. rs.close(); 
+55. selectStmt.close(); 
+56. insertStmt.close(); 
+57. conn.close(); 
+58. } catch (SQLException e) { 
+59. e.printStackTrace(); 
+60. } 
+61. } 
+62. }
